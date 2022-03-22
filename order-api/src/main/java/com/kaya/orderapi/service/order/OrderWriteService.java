@@ -1,4 +1,4 @@
-package com.kaya.orderapi.service;
+package com.kaya.orderapi.service.order;
 
 import com.kaya.orderapi.entity.Order;
 import com.kaya.orderapi.repository.OrderRepository;

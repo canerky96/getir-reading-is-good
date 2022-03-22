@@ -1,4 +1,4 @@
-package com.kaya.orderapi.client.bookapi.dto;
+package com.kaya.orderapi.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

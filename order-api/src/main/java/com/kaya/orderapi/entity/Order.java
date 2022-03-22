@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -16,16 +17,18 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "t_order", indexes = @Index(columnList = "username"))
+@Table(name = "g_order", indexes = @Index(columnList = "username"))
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@ToString
 public class Order extends BaseEntity {
 
   @Column(name = "username", nullable = false)
@@ -34,8 +37,6 @@ public class Order extends BaseEntity {
   @Enumerated(EnumType.STRING)
   private OrderStatus status;
 
-  @ElementCollection(fetch = FetchType.EAGER)
-  @CollectionTable(name = "order_book", joinColumns = @JoinColumn(name = "order_id"))
-  @Column(name = "book_id")
-  private List<Long> books;
+  @OneToMany(mappedBy="order")
+  private List<OrderedBook> books;
 }

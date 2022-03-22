@@ -1,5 +1,5 @@
 server:
-  port: 9094
+  port: 9092
 
 spring:
   application:
@@ -12,7 +12,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create
     show-sql: true
     properties:
       hibernate:
@@ -20,6 +20,8 @@ spring:
   h2:
     console:
       enabled: true
+  flyway:
+    enabled: false
 security:
   oauth2:
     client:
@@ -27,7 +29,3 @@ security:
       client-secret: web
     resource:
       token-info-uri: http://localhost:9090/oauth/check_token
-
-feign:
-  book-api:
-    url: http://localhost:9092/book/

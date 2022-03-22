@@ -27,7 +27,3 @@ security:
       client-secret: web
     resource:
       token-info-uri: http://authorization-api:8080/oauth/check_token
-
-feign:
-  book-api:
-    url: http://book-api:8080/book/

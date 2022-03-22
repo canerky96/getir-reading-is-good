@@ -15,4 +15,7 @@ public class OrderQueryParamDTO {
 
   @NotEmpty(message = "Username must be required")
   private String username;
+
+  private int page = 0;
+  private int pageSize = 10;
 }

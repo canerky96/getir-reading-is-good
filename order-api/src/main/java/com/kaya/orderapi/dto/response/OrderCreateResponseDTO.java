@@ -17,6 +17,5 @@ public class OrderCreateResponseDTO {
   private Long id;
   private String username;
   private OrderStatus status;
-  private List<Long> books;
-
+  private List<OrderedBookResponseDTO> books;
 }
