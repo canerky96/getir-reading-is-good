@@ -1,7 +1,9 @@
 package com.kaya.orderapi.service.order;
 
 import com.kaya.orderapi.dto.request.OrderCreateRequestDTO;
+import com.kaya.orderapi.dto.request.OrderQueryBetweenDatesRequestDTO;
 import com.kaya.orderapi.dto.response.OrderCreateResponseDTO;
+import com.kaya.orderapi.dto.response.OrderResponseDTO;
 import com.kaya.orderapi.entity.Order;
 import com.kaya.orderapi.mapper.OrderMapper;
 import com.kaya.orderapi.service.book.BookService;
@@ -11,6 +13,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -40,31 +45,17 @@ public class OrderService {
     return mapper.mapToCreateResponse(order);
   }
 
-  // public OrderResponseDTO get(Long id) {
-  //  var order = orderReadService.findById(id);
-  //  var books = bookApiEndpointService.findAllById(order.getBooks());
-  //  return Optional.of(order)
-  //      .map(mapToResponse(books))
-  //      .orElseThrow(() -> new OrderApiException(INTERNAL_SERVER_ERROR));
-  // }
-  //
-  // private Function<Order, OrderResponseDTO> mapToResponse(List<BookResponseDTO> books) {
-  //  return (order) -> {
-  //    var response = mapper.mapToResponse(order);
-  //    response.setBooks(books);
-  //    return response;
-  //  };
-  // }
-  //
-  // private Function<Order, OrderResponseDTO> mapToResponse(Map<Long, BookResponseDTO> books) {
-  //  return (order) -> {
-  //    var response = mapper.mapToResponse(order);
-  //    List<BookResponseDTO> bookResponses = new ArrayList<>();
-  //    for (Long id : order.getBooks()) {
-  //      bookResponses.add(books.get(id));
-  //    }
-  //    response.setBooks(bookResponses);
-  //    return response;
-  //  };
-  // }
+  @Transactional(readOnly = true)
+  public OrderResponseDTO get(Long id) {
+    var order = orderReadService.findById(id);
+    return mapper.mapToResponse(order);
+  }
+
+  @Transactional(readOnly = true)
+  public List<OrderResponseDTO> query(OrderQueryBetweenDatesRequestDTO queryParams) {
+    var startDate = queryParams.getStartDate();
+    var endDate = queryParams.getEndDate();
+    var orders = orderReadService.findByBetweenDates(startDate, endDate);
+    return orders.stream().map(mapper::mapToResponse).collect(Collectors.toList());
+  }
 }
