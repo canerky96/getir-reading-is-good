@@ -12,7 +12,6 @@ public class BookWriteService {
 
   private final BookRepository bookRepository;
 
-  @Transactional(rollbackFor = Exception.class)
   public Book save(Book book) {
     return bookRepository.save(book);
   }

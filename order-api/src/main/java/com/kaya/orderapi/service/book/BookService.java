@@ -30,14 +30,13 @@ public class BookService {
     var book = bookCreateService.create(request);
     return bookMapper.mapToCreateResponse(book);
   }
-
-  @Transactional(readOnly = true)
+  @Transactional(rollbackFor = Exception.class)
   public BookResponseDTO updateStock(Long id, BookUpdateStockRequestDTO request) {
     var book = bookReadService.findById(id);
     book = bookUpdateService.updateStock(book, request.getStock());
     return bookMapper.mapToBookResponse(book);
   }
-
+  @Transactional(rollbackFor = Exception.class)
   public List<Book> findAllById(Set<Long> bookIds) {
     return bookReadService.findAllByIdIn(bookIds);
   }

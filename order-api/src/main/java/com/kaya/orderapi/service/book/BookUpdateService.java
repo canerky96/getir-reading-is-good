@@ -16,12 +16,10 @@ public class BookUpdateService {
 
   private final BookWriteService bookWriteService;
 
-  @Transactional(rollbackFor = Exception.class)
   public void decreaseStock(List<Book> books) {
     books.forEach(this::decreaseStock);
   }
 
-  @Transactional(rollbackFor = Exception.class)
   public Book updateStock(Book book, Integer stock) {
     book.setStock(stock);
     return bookWriteService.save(book);
