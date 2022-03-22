@@ -1,0 +1,11 @@
+zuul:
+  sensitiveHeaders: Cookie,Set-Cookie
+  routes:
+    authorization:
+      path: /api/authorization/**
+      url: http://authorization-api:8080/
+      stripPrefix: true
+    order:
+      path: /api/order/**
+      url: http://order-api:8080/
+      stripPrefix: true

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/api-gateway/api-gateway.iml" filepath="$PROJECT_DIR$/api-gateway/api-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/authorization-api/authorization-api.iml" filepath="$PROJECT_DIR$/authorization-api/authorization-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/getir-reading-is-good.iml" filepath="$PROJECT_DIR$/.idea/getir-reading-is-good.iml" />
+      <module fileurl="file://$PROJECT_DIR$/order-api/order-api.iml" filepath="$PROJECT_DIR$/order-api/order-api.iml" />
+    </modules>
+  </component>
+</project>

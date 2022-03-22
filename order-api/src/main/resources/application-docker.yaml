@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: order-api
+  datasource:
+    url: jdbc:h2:mem:order-db
+    driver-class-name: org.h2.Driver
+    username: order-username
+    password: order-password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+security:
+  oauth2:
+    client:
+      client-id: web
+      client-secret: web
+    resource:
+      token-info-uri: http://authorization-api:8080/oauth/check_token
+
+feign:
+  book-api:
+    url: http://book-api:8080/book/

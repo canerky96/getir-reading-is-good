@@ -1,0 +1,11 @@
+zuul:
+  sensitiveHeaders: Cookie,Set-Cookie
+  routes:
+    authorization:
+      path: /api/authorization/**
+      url: http://localhost:9090/
+      stripPrefix: true
+    order:
+      path: /api/order/**
+      url: http://localhost:9092/
+      stripPrefix: true

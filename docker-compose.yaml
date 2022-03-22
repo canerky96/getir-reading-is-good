@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  redis:
+    image: redis:6.0
+    networks:
+      - getir-network
+    ports:
+      - "6379:6379"
+  api-gateway:
+    build: api-gateway/.
+    networks:
+      - getir-network
+    ports:
+      - "8080:8080"
+  authorization-api:
+    build: authorization-api/.
+    networks:
+      - getir-network
+    depends_on:
+      - redis
+  order-api:
+    build: order-api/.
+    networks:
+      - getir-network
+
+networks:
+  getir-network:
