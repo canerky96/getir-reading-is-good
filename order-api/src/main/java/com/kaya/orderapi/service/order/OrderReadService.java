@@ -41,6 +41,11 @@ public class OrderReadService {
   }
 
   @Transactional(readOnly = true)
+  public List<Order> findAllByUsername(String username) {
+    return orderRepository.findAllByUsername(username);
+  }
+
+  @Transactional(readOnly = true)
   public List<Order> findByBetweenDates(Date startDate, Date endDate) {
     QOrder qOrder = QOrder.order;
     QOrderedBook qOrderedBook = QOrderedBook.orderedBook;

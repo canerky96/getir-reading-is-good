@@ -26,11 +26,16 @@ public class OrderService {
 
   private final OrderReadService orderReadService;
   private final OrderCreateService orderCreateService;
-  private final OrderWriteService orderWriteService;
   private final OrderMapper mapper;
 
+  @Transactional(readOnly = true)
   public Page<Order> searchByUsername(String username, Pageable pageable) {
     return orderReadService.findPageableByUsername(username, pageable);
+  }
+
+  @Transactional(readOnly = true)
+  public List<Order> searchByUsername(String username) {
+    return orderReadService.findAllByUsername(username);
   }
 
   @Transactional(rollbackFor = Exception.class)
