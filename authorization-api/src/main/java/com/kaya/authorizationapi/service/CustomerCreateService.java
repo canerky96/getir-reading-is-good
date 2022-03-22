@@ -1,8 +1,8 @@
 package com.kaya.authorizationapi.service;
 
-import com.kaya.authorizationapi.dto.request.UserCreateRequestDTO;
-import com.kaya.authorizationapi.entity.AuthUser;
-import com.kaya.authorizationapi.repository.AuthUserRepository;
+import com.kaya.authorizationapi.dto.request.CustomerCreateRequestDTO;
+import com.kaya.authorizationapi.entity.Customer;
+import com.kaya.authorizationapi.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,19 +14,19 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class AuthUserCreateService {
+public class CustomerCreateService {
 
   private static final List<String> DEFAULT_USER_PERMISSIONS =
       List.of("decrease_book_stock", "read_book", "read_order", "create_order");
 
-  private final AuthUserRepository authUserRepository;
+  private final CustomerRepository customerRepository;
   private final PasswordEncoder passwordEncoder;
 
   @Transactional(rollbackFor = Exception.class)
-  public AuthUser create(UserCreateRequestDTO requestDTO) {
+  public Customer create(CustomerCreateRequestDTO requestDTO) {
 
     var user =
-        AuthUser.builder()
+        Customer.builder()
             .username(requestDTO.getUsername())
             .password(passwordEncoder.encode(requestDTO.getPassword()))
             .permissions(DEFAULT_USER_PERMISSIONS)
@@ -35,6 +35,6 @@ public class AuthUserCreateService {
     log.info(
         "User created, username: {}, permissions: {}", user.getUsername(), user.getPermissions());
 
-    return authUserRepository.save(user);
+    return customerRepository.save(user);
   }
 }

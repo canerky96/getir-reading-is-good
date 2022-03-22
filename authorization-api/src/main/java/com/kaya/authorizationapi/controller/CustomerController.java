@@ -1,8 +1,8 @@
 package com.kaya.authorizationapi.controller;
 
-import com.kaya.authorizationapi.dto.request.UserCreateRequestDTO;
-import com.kaya.authorizationapi.dto.response.UserCreateResponseDTO;
-import com.kaya.authorizationapi.service.AuthUserService;
+import com.kaya.authorizationapi.dto.request.CustomerCreateRequestDTO;
+import com.kaya.authorizationapi.dto.response.CustomerCreateResponseDTO;
+import com.kaya.authorizationapi.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(AuthUserController.ENDPOINT)
+@RequestMapping(CustomerController.ENDPOINT)
 @RequiredArgsConstructor
-public class AuthUserController {
+public class CustomerController {
 
-  public static final String ENDPOINT = "user";
+  public static final String ENDPOINT = "customer";
 
-  private final AuthUserService authUserService;
+  private final CustomerService customerService;
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public UserCreateResponseDTO create(@Valid @RequestBody UserCreateRequestDTO request) {
-    return authUserService.create(request);
+  public CustomerCreateResponseDTO create(@Valid @RequestBody CustomerCreateRequestDTO request) {
+    return customerService.create(request);
   }
 }

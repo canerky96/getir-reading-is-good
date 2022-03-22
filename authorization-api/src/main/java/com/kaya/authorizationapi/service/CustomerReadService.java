@@ -1,8 +1,8 @@
 package com.kaya.authorizationapi.service;
 
-import com.kaya.authorizationapi.entity.AuthUser;
+import com.kaya.authorizationapi.entity.Customer;
 import com.kaya.authorizationapi.exception.AuthorizationApiException;
-import com.kaya.authorizationapi.repository.AuthUserRepository;
+import com.kaya.authorizationapi.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,19 +12,19 @@ import static com.kaya.authorizationapi.exception.ErrorCode.USER_NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor
-public class AuthUserReadService {
+public class CustomerReadService {
 
-  private final AuthUserRepository authUserRepository;
+  private final CustomerRepository customerRepository;
 
-  public AuthUser findByUsername(String username) {
+  public Customer findByUsername(String username) {
     return findOptionalByUsername(username).orElseThrow(() -> new AuthorizationApiException(USER_NOT_FOUND));
   }
 
-  public Optional<AuthUser> findOptionalByUsername(String username) {
-    return authUserRepository.findByUsername(username);
+  public Optional<Customer> findOptionalByUsername(String username) {
+    return customerRepository.findByUsername(username);
   }
 
   public boolean existsByUsername(String username) {
-    return authUserRepository.existsByUsername(username);
+    return customerRepository.existsByUsername(username);
   }
 }

@@ -22,12 +22,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Entity
-@Table(name = "auth_user")
+@Table(name = "g_customer")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthUser implements UserDetails {
+public class Customer implements UserDetails {
 
   @Id @GeneratedValue private Long id;
 
@@ -38,7 +38,7 @@ public class AuthUser implements UserDetails {
   private String password;
 
   @ElementCollection(fetch = FetchType.EAGER)
-  @CollectionTable(name = "auth_user_permission", joinColumns = @JoinColumn(name = "user_id"))
+  @CollectionTable(name = "g_customer_permission", joinColumns = @JoinColumn(name = "user_id"))
   @Column(name = "permission")
   private List<String> permissions;
 

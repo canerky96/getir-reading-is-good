@@ -11,14 +11,14 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class AuthUserDetailsService implements UserDetailsService {
+public class CustomerUserDetailsService implements UserDetailsService {
 
-  private final AuthUserService authUserService;
+  private final CustomerService customerService;
   private final AccountStatusUserDetailsChecker accountStatusUserDetailsChecker;
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    var user = authUserService.findByUsername(username);
+    var user = customerService.findByUsername(username);
     this.accountStatusUserDetailsChecker.check(user);
     log.info("User found with username: {}, and user: {}", username, user.toString());
     return user;
