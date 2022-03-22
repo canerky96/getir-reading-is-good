@@ -4,24 +4,24 @@ server:
 spring:
   application:
     name: authorization-api
-  datasource:
-    url: jdbc:h2:mem:authorization-db
-    driver-class-name: org.h2.Driver
-    username: authorization-username
-    password: authorization-password
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: validate
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-  h2:
-    console:
-      enabled: true
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: authorization-db
 
 authorization-api:
   redis:
     host: localhost
     port: 6379
+  admin:
+    id: 1234
+    username: admin
+    password: $2a$12$KwhGOUehFkFW76tUwZ70KOPxH0aRZKQOzkHG9Nhxnxu8rtRrDruc2
+    permissions:
+      - create_book
+      - decrease_book_stock
+      - update_book_stock
+      - read_book
+      - read_order
+      - create_order

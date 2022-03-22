@@ -7,6 +7,12 @@ services:
       - getir-network
     ports:
       - "6379:6379"
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - getir-network
   api-gateway:
     build: api-gateway/.
     networks:

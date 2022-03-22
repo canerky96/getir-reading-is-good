@@ -4,42 +4,35 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Entity
-@Table(name = "g_customer")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Document(collection = "customer")
 public class Customer implements UserDetails {
 
-  @Id @GeneratedValue private Long id;
+  @Id private String id;
 
-  @Column(name = "username", unique = true)
+  @Indexed(unique = true)
+  @NotEmpty(message = "Username must not be empty")
   private String username;
 
-  @Column(name = "password")
+  @NotEmpty(message = "Password must not be empty")
   private String password;
 
-  @ElementCollection(fetch = FetchType.EAGER)
-  @CollectionTable(name = "g_customer_permission", joinColumns = @JoinColumn(name = "user_id"))
-  @Column(name = "permission")
+  @NotEmpty(message = "At least one permission is required")
   private List<String> permissions;
 
   @Override
