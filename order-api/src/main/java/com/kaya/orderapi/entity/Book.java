@@ -33,4 +33,19 @@ public class Book extends BaseEntity {
   private Integer stock;
 
   @Version private Integer version;
+
+  @Override
+  public String toString() {
+    return "Book{" +
+            "createdBy='" + createdBy + '\'' +
+            ", createDate=" + createDate +
+            ", lastModifiedBy='" + lastModifiedBy + '\'' +
+            ", updateDate=" + updateDate +
+            ", name='" + name + '\'' +
+            ", writer='" + writer + '\'' +
+            ", price=" + price +
+            ", stock=" + stock +
+            ", version=" + version +
+            '}';
+  }
 }
