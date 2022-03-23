@@ -24,6 +24,7 @@ public class StatisticsController {
   private final StatisticsService statisticsService;
 
   @GetMapping
+  @PreAuthorize("hasAuthority('read_statistics')")
   public SuccessResponse<List<OrderStatisticsResponseDTO>> search(
       @Valid OrderStatisticsQueryParamDTO query) {
     var statistics = statisticsService.search(query);

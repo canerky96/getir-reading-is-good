@@ -29,14 +29,14 @@ public class OrderController {
   private final OrderService orderService;
 
   @GetMapping()
-  @PreAuthorize("hasAuthority('read_order')")
+  @PreAuthorize("hasAuthority('read_order_with_date')")
   public SuccessResponse<List<OrderResponseDTO>> query(@Valid OrderQueryBetweenDatesRequestDTO queryParams) {
     var order = orderService.query(queryParams);
     return new SuccessResponse<>(order, HttpStatus.OK.value());
   }
 
   @GetMapping("{id}")
-  @PreAuthorize("hasAuthority('read_order')")
+  @PreAuthorize("hasAuthority('read_order_by_id')")
   public SuccessResponse<OrderResponseDTO> get(@PathVariable("id") Long id) {
     var order = orderService.get(id);
     return new SuccessResponse<>(order, HttpStatus.OK.value());

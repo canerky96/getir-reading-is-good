@@ -20,8 +20,9 @@ authorization-api:
     password: $2a$12$KwhGOUehFkFW76tUwZ70KOPxH0aRZKQOzkHG9Nhxnxu8rtRrDruc2
     permissions:
       - create_book
-      - decrease_book_stock
       - update_book_stock
-      - read_book
-      - read_order
+      - read_customer_order
+      - read_order_with_date
+      - read_order_by_id
       - create_order
+      - read_statistics

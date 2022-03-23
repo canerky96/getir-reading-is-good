@@ -24,7 +24,7 @@ public class CustomerController {
   private final CustomerService customerService;
 
   @GetMapping
-  @PreAuthorize("hasAuthority('read_order')")
+  @PreAuthorize("hasAuthority('read_customer_order')")
   public SuccessResponse<Page<OrderResponseDTO>> search(@Valid OrderQueryParamDTO queryParams) {
     var orders = customerService.search(queryParams);
     return new SuccessResponse<>(orders, HttpStatus.OK.value());
