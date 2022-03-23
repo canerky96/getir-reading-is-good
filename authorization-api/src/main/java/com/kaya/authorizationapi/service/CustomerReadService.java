@@ -20,7 +20,7 @@ public class CustomerReadService {
     return findOptionalByUsername(username).orElseThrow(() -> new AuthorizationApiException(USER_NOT_FOUND));
   }
 
-  public Optional<Customer> findOptionalByUsername(String username) {
+  private Optional<Customer> findOptionalByUsername(String username) {
     return customerRepository.findByUsername(username);
   }
 

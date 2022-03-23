@@ -59,4 +59,13 @@ public class Customer implements UserDetails {
   public boolean isEnabled() {
     return true;
   }
+
+  @Override
+  public String toString() {
+    return "Customer{" +
+            "id='" + id + '\'' +
+            ", username='" + username + '\'' +
+            ", permissions=" + permissions +
+            '}';
+  }
 }
