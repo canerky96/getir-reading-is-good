@@ -26,37 +26,50 @@ In addition to the customer's permissions, admin can also perform the following 
 - Update the stock of book
 
 ## Running instructions on local machine
-While 
-First, we need to run MongoDB and Redis on docker machine. Go to project directory and type:
+
+While First, we need to run MongoDB and Redis on docker machine. Go to project directory and type:
+
 ```
 docker-compose up --build -d redis mongo
 ```
+
 Now we need to build packages
+
 ```
 mvn -f api-gateway clean test package
 mvn -f authorization-api clean test package
 mvn -f order-api clean test package
 ```
+
 Finaly we can run jar files
+
 ```
 java -jar api-gateway/target/api-gateway-0.0.1-SNAPSHOT.jar
 java -jar authorization-api/target/authorization-api-0.0.1-SNAPSHOT.jar
 java -jar order-api/target/order-api-0.0.1-SNAPSHOT.jar
 ```
+
 ## Running instructions on docker
+
 Before creating docker images, we should build the projects. So go project path and type:
+
 ```
 mvn -f api-gateway clean test package
 mvn -f authorization-api clean test package
 mvn -f order-api clean test package
 ```
+
 Now we can build and run our docker images.
+
 ```
 docker-compose up --build -d
 ```
 
+## How to use?
 
-
+While authorization-api running up `ADMIN` will be created with username `admin` and password `admin`. Before each
+request you need the set Authorization header except of creating user.
+You can see the details in Postman Collection (`Getir Tech Challenge.postman_collection.json`).
 
 ## Tech Stack
 
