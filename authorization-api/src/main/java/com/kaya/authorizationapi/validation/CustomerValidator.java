@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AuthUserValidator {
+public class CustomerValidator {
 
   private final CustomerReadService customerReadService;
 

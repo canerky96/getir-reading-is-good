@@ -4,7 +4,7 @@ import com.kaya.authorizationapi.dto.request.CustomerCreateRequestDTO;
 import com.kaya.authorizationapi.dto.response.CustomerCreateResponseDTO;
 import com.kaya.authorizationapi.entity.Customer;
 import com.kaya.authorizationapi.mapper.CustomerMapper;
-import com.kaya.authorizationapi.validation.AuthUserValidator;
+import com.kaya.authorizationapi.validation.CustomerValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ public class CustomerService {
 
   private final CustomerMapper mapper;
   private final CustomerReadService customerReadService;
-  private final AuthUserValidator authUserValidator;
+  private final CustomerValidator customerValidator;
   private final CustomerCreateService customerCreateService;
 
   public Customer findByUsername(String username) {
@@ -22,8 +22,8 @@ public class CustomerService {
   }
 
   public CustomerCreateResponseDTO create(CustomerCreateRequestDTO requestDTO) {
-    authUserValidator.validateForExistenceByUsername(requestDTO.getUsername());
-    var user = customerCreateService.create(requestDTO);
-    return mapper.map(user);
+    customerValidator.validateForExistenceByUsername(requestDTO.getUsername());
+    var customer = customerCreateService.create(requestDTO);
+    return mapper.map(customer);
   }
 }
