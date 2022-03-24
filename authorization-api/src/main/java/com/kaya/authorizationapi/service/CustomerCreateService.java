@@ -16,7 +16,12 @@ import java.util.UUID;
 public class CustomerCreateService {
 
   private static final List<String> DEFAULT_USER_PERMISSIONS =
-      List.of("read_customer_order", "read_order_by_id", "create_order", "read_statistics");
+      List.of(
+          "read_customer_order",
+          "read_order_with_date",
+          "read_order_by_id",
+          "create_order",
+          "read_statistics");
 
   private final CustomerWriteService customerWriteService;
   private final PasswordEncoder passwordEncoder;
