@@ -14,9 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class BookWriteService {
 
   private final BookRepository bookRepository;
+  private final SecurityUtils securityUtils;
 
   public Book save(Book book) {
-    log.info("Book inserted from username:{}, book: {}", SecurityUtils.getUsername(), book);
+    log.info("Book inserted from username:{}, book: {}", securityUtils.getUsername(), book);
     return bookRepository.save(book);
   }
 }

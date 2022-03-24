@@ -12,11 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class OrderCreateService {
 
   private final OrderWriteService orderWriteService;
+  private final SecurityUtils securityUtils;
 
   @Transactional(rollbackFor = Exception.class)
   public Order create() {
     var order =
-        Order.builder().username(SecurityUtils.getUsername()).status(OrderStatus.CREATED).build();
+        Order.builder().username(securityUtils.getUsername()).status(OrderStatus.CREATED).build();
     return orderWriteService.save(order);
   }
 }
